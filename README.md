@@ -10,6 +10,11 @@
 
 - `h5-prototype.html`：三 Tab H5 展示原型（首页视觉定稿 V0.4）。
 - `assets/home-visual-final-v1.png`：390 × 844 首页视觉稿，与原型共用同一套设计 tokens。
+- `assets/map-visual-final-v1.png`：390 × 844 老鹅地图视觉稿。
+- `assets/mine-guest-visual-final-v1.png`：390 × 844 “我的”未登录视觉稿。
+- `assets/mine-basic-visual-final-v1.png`：390 × 844 未认证用户视觉稿。
+- `assets/mine-owner-visual-final-v1.png`：390 × 844 摊主视觉稿。
+- `assets/mine-officer-visual-final-v1.png`：390 × 844 执法者视觉稿。
 - `pc-admin-prototype.html`：PC 管理后台展示原型。
 - `prototype-spec.md`：首轮范围、角色权限和待确认问题初稿。
 - `design-tokens.json`：颜色、间距和圆角等设计变量。
