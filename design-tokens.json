@@ -1,15 +1,15 @@
 {
   "name": "Ematong Prototype Tokens",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "color": {
-    "brand": "#176B4D",
-    "brandDark": "#143F31",
-    "brandSoft": "#DFF0E8",
-    "background": "#F4F7F5",
+    "brand": "#16835F",
+    "brandDark": "#147B5B",
+    "brandSoft": "#E8F5F0",
+    "background": "#F4F6F5",
     "surface": "#FFFFFF",
-    "text": "#17221D",
-    "muted": "#65706A",
-    "line": "#DCE4DF",
+    "text": "#17231F",
+    "muted": "#75807B",
+    "line": "#E8ECEA",
     "warning": "#BB7A13",
     "warningSoft": "#FFF2D5",
     "danger": "#BD3B35",
@@ -17,8 +17,8 @@
     "info": "#286F9F",
     "infoSoft": "#E6F2FA"
   },
-  "radius": {"small": 10, "card": 16, "modal": 22},
-  "spacing": {"xs": 6, "sm": 10, "md": 14, "lg": 18, "xl": 26},
+  "radius": {"small": 9, "card": 12, "modal": 22},
+  "spacing": {"xs": 5, "sm": 10, "md": 14, "lg": 18, "xl": 24},
   "motion": {"fast": 180, "normal": 220, "pressScale": 0.96},
   "layout": {"pcSidebar": 236, "h5MaxWidth": 430, "minimumHitArea": 40}
 }

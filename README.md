@@ -1,6 +1,6 @@
-# 鹅码通展示原型 V0.2
+# 鹅码通展示原型 V0.4
 
-> H5 V0.3 为国内“微信 H5 + 政务民生服务”布局的黑白灰中保真功能原型；功能确认后再进行视觉定稿。PC 后台仍沿用 V0.1。
+> H5 V0.4 已完成首页视觉定稿，并同步为国内“微信 H5 + 政务民生服务”方向的可交互原型。PC 后台仍沿用 V0.1。
 
 图标统一使用本地打包的 Remix Icon 4.9.0 SVG Sprite；授权文件位于 `assets/REMIXICON-LICENSE.txt`。
 
@@ -8,7 +8,8 @@
 
 直接双击 `index.html`，或在本目录启动任意静态文件服务器后访问。
 
-- `h5-prototype.html`：三 Tab H5 展示原型（V0.2）。
+- `h5-prototype.html`：三 Tab H5 展示原型（首页视觉定稿 V0.4）。
+- `assets/home-visual-final-v1.png`：390 × 844 首页视觉稿，与原型共用同一套设计 tokens。
 - `pc-admin-prototype.html`：PC 管理后台展示原型。
 - `prototype-spec.md`：首轮范围、角色权限和待确认问题初稿。
 - `design-tokens.json`：颜色、间距和圆角等设计变量。
