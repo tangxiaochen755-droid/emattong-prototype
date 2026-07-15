@@ -2,6 +2,8 @@
 
 > H5 V0.3 为国内“微信 H5 + 政务民生服务”布局的黑白灰中保真功能原型；功能确认后再进行视觉定稿。PC 后台仍沿用 V0.1。
 
+图标统一使用本地打包的 Remix Icon 4.9.0 SVG Sprite；授权文件位于 `assets/REMIXICON-LICENSE.txt`。
+
 ## 打开方式
 
 直接双击 `index.html`，或在本目录启动任意静态文件服务器后访问。
