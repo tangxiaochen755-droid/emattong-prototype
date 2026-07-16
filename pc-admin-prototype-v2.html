@@ -18,12 +18,6 @@ document.querySelector('.user .sub').textContent='系统管理员 · 后台唯�
 document.querySelector('.user b').textContent='张管理员';
 const topUser=document.querySelector('.top span:last-child');
 topUser.innerHTML=topUser.innerHTML.replace('张管理','张管理员（系统管理员）');
-const content=document.querySelector('.content');
-const accessNotice=document.createElement('div');
-accessNotice.className='notice';
-accessNotice.style.marginBottom='16px';
-accessNotice.innerHTML='<b>后台访问边界：</b>本系统仅供系统管理员使用。摊主、执法者及普通用户均通过 H5 办理业务，无法进入本后台。';
-content.prepend(accessNotice);
 document.querySelector('#page-dashboard .heading p').textContent='系统管理员统一管理 H5 发布、用户身份及监管业务';
 document.querySelector('#page-identity .heading h1').textContent='H5 用户与身份';
 document.querySelector('#page-identity .heading p').textContent='系统管理员审核 H5 用户身份及绑定关系；认证不授予后台权限';
