@@ -181,4 +181,72 @@ const initialPageV07=new URLSearchParams(location.search).get('page');if(initial
   font-size:13px;
   line-height:20px;
 }
+</style><style>
+/* 表格操作按钮体系：主操作实心、普通操作描边、风险操作警示描边。 */
+.table th:last-child,
+.table td:last-child{
+  min-width:112px;
+}
+.table td:last-child .links{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+}
+.table td:last-child button.link,
+.table td:last-child button.btn.small{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  min-width:56px;
+  height:32px;
+  padding:0 12px;
+  border:1px solid #b8d8cd;
+  border-radius:6px;
+  background:#fff;
+  color:#08775d;
+  font-size:13px;
+  font-weight:500;
+  line-height:30px;
+  white-space:nowrap;
+  text-decoration:none;
+  box-shadow:none;
+  transition:background-color .18s ease,border-color .18s ease,color .18s ease,transform .18s ease;
+}
+.table td:last-child button.link:hover{
+  background:#edf8f4;
+  border-color:#7ebba6;
+  color:#066b52;
+  text-decoration:none;
+}
+.table td:last-child button.link:active,
+.table td:last-child button.btn.small:active{
+  transform:translateY(1px);
+}
+.table td:last-child button.btn.primary.small{
+  border-color:#078766;
+  background:#078766;
+  color:#fff;
+  box-shadow:0 3px 8px rgba(7,135,102,.14);
+}
+.table td:last-child button.btn.primary.small:hover{
+  border-color:#066b52;
+  background:#066b52;
+}
+.table td:last-child button.link[data-toast*="停用"]{
+  border-color:#efc9bc;
+  background:#fffaf8;
+  color:#b65332;
+}
+.table td:last-child button.link[data-toast*="停用"]:hover{
+  border-color:#dc9d88;
+  background:#fff1ec;
+  color:#984126;
+}
+.table td:last-child .icon{
+  width:15px;
+  height:15px;
+  flex:0 0 15px;
+}
 </style></body></html>
