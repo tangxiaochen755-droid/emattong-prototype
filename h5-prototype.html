@@ -117,5 +117,18 @@ work.owner=work.owner
 const permitDate=document.querySelector('[data-license-title="临时摊点设置证"] small');
 if(permitDate) permitDate.textContent='有效期至 2026-07-31 · 点击查看';
 </script>
+<script>
+// V0.8 未认证用户申请摊主认证。
+work.basic=`<div class="work-grid"><button class="work-card accent" id="owner-cert-entry"><span class="list-icon"><svg class="icon"><use href="assets/remixicon.used.symbol.svg#ri-store-2-line"/></svg></span><strong>摊主认证</strong><small>认证后可提交摊位信息</small><b>申请</b></button></div>`;
+const certSheet=document.createElement('div');
+certSheet.className='sheet-wrap';certSheet.id='owner-cert-sheet';
+certSheet.innerHTML=`<section class="sheet"><div class="handle"></div><h2>申请摊主认证</h2><p>认证通过后获得摊主身份，可继续提交首次摊位信息审核。认证不会获得 PC 后台权限。</p><div class="field"><label>真实姓名 *</label><input value="陈晓"></div><div class="field"><label>联系电话 *</label><input value="138****5621"></div><div class="field"><label>身份证号 *</label><input placeholder="请输入身份证号"></div><div class="field"><label>摊位关系 *</label><select><option>申请新摊位</option><option>绑定已有摊位</option></select></div><div class="field"><label>拟经营地点 *</label><input placeholder="请选择或填写地点"></div><div class="field"><label>认证材料 *</label><div class="upload">＋上传身份证明和经营相关材料</div></div><div class="save-row"><button class="ghost" id="cancel-owner-cert">取消</button><button class="primary" id="submit-owner-cert">提交认证</button></div></section>`;
+document.body.appendChild(certSheet);
+const renderRoleBeforeCert=renderRole;
+renderRole=function(role){renderRoleBeforeCert(role);if(role==='basic')document.querySelector('#work-heading').classList.remove('hide');const entry=document.querySelector('#owner-cert-entry');if(entry)entry.onclick=()=>certSheet.classList.add('open')};
+document.querySelector('#cancel-owner-cert').onclick=()=>certSheet.classList.remove('open');
+document.querySelector('#submit-owner-cert').onclick=()=>{certSheet.classList.remove('open');work.basic=work.basic.replace('<small>认证后可提交摊位信息</small><b>申请</b>','<small>申请已提交，等待审核</small><b>审核中</b>');renderRole('basic');document.querySelector('#role-caption').textContent='摊主认证审核中';toast('摊主认证已提交，可在此查看审核进度')};
+certSheet.addEventListener('click',event=>{if(event.target===certSheet)certSheet.classList.remove('open')});
+</script>
 </body>
 </html>
