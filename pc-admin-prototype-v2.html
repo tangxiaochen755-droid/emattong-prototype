@@ -114,4 +114,8 @@ document.querySelectorAll('#page-publish tbody tr').forEach(row=>{if(row.textCon
 document.querySelectorAll('#page-publish [data-toast]').forEach(button=>button.onclick=()=>toast(button.dataset.toast));
 forms.audit[0]='审核摊位信息变更';
 forms.audit[1]=forms.audit[1].replace('审核意见（驳回必填）','审核意见').replace('驳回','未通过');
-</script></body></html>
+</script><style>
+/* 首次发布规则：提升与页面背景的区分度。 */
+#page-publish>.notice{position:relative;padding:13px 16px;margin-bottom:16px;background:#fff;border:1px solid #b9dcd0;border-left:4px solid #078766;border-radius:8px;color:#49665d;box-shadow:0 5px 16px rgba(27,68,55,.075);line-height:1.65}
+#page-publish>.notice b{color:#056b52;font-weight:700;margin-right:3px}
+</style></body></html>
