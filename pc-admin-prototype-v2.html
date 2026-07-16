@@ -107,7 +107,7 @@ setReviewActions=function(show){
   rejectButton.style.display=show?'inline-flex':'none';
   rejectButton.style.alignItems='center';rejectButton.style.gap='6px';
   const wrap=document.querySelector('#return-reason-wrap');
-  if(wrap&&show){wrap.style.display='block';wrap.querySelector('label').textContent='未通过理由 *';wrap.querySelector('textarea').placeholder='请明确说明未通过原因及需要修改的内容';wrap.querySelector('small').textContent='申请人可在 H5 查看理由，修改后重新提交';}
+  if(wrap&&show){wrap.style.display='flex';wrap.querySelector('label').textContent='未通过理由 *';wrap.querySelector('textarea').placeholder='请明确说明未通过原因及需要修改的内容';wrap.querySelector('small').textContent='申请人可在 H5 查看理由，修改后重新提交';}
 }
 rejectButton.onclick=()=>{const reason=document.querySelector('#return-reason');if(!reason||!reason.value.trim()){if(reason){reason.style.borderColor='#078766';reason.focus()}toast('请填写未通过理由');return}closeDrawer();toast('审核未通过，理由已发送至申请人 H5')};
 document.querySelectorAll('#page-publish tbody tr').forEach(row=>{if(row.textContent.includes('已打回')){row.cells[6].textContent='等待修改';row.cells[7].innerHTML='<span class="badge dark">审核未通过</span>';row.lastElementChild.innerHTML='<button class="link" data-toast="未通过理由：摊位照片模糊，请重新上传清晰照片"><svg class="icon" style="transform:rotate(180deg)"><use href="assets/remixicon.used.symbol.svg#ri-share-forward-line"/></svg> 未通过记录</button>'}if(row.textContent.includes('申请结束'))row.cells[6].textContent='等待修改'});
@@ -141,4 +141,44 @@ const openDrawerBeforeConfigV07=openDrawer;
 openDrawer=function(k){const saveButton=document.querySelector('#save');saveButton.style.display='inline-flex';saveButton.textContent='保存';openDrawerBeforeConfigV07(k)};
 document.querySelectorAll('.config-tab').forEach(button=>button.onclick=()=>renderConfigV07(button.dataset.configTab));document.querySelector('#config-export').onclick=()=>toast('当前配置数据已导出');renderConfigV07('qr');
 const initialPageV07=new URLSearchParams(location.search).get('page');if(initialPageV07&&names[initialPageV07])go(initialPageV07);
-</script></body></html>
+</script><style>
+/* 审核未通过理由：采用独立纵向表单，避免被抽屉双列布局挤压。 */
+#return-reason-wrap{
+  grid-column:1 / -1;
+  flex-direction:column;
+  align-items:stretch;
+  gap:8px;
+  width:100%;
+  margin-top:16px!important;
+  padding:16px;
+  background:#f8fbfa;
+  border:1px solid #dce9e4;
+  border-radius:8px;
+  box-sizing:border-box;
+}
+#return-reason-wrap label{
+  display:block;
+  width:100%;
+  color:#31473f;
+  font-size:14px;
+  font-weight:600;
+  line-height:22px;
+}
+#return-reason-wrap textarea{
+  display:block;
+  width:100%;
+  min-height:96px;
+  margin:0;
+  padding:12px 14px;
+  resize:vertical;
+  box-sizing:border-box;
+  line-height:1.6;
+}
+#return-reason-wrap small{
+  display:block;
+  width:100%;
+  color:#7b8c86;
+  font-size:13px;
+  line-height:20px;
+}
+</style></body></html>
