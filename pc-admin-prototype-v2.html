@@ -31,4 +31,43 @@ document.querySelector('#page-inspection .heading p').textContent='系统管理�
 document.querySelector('#page-inspection .heading .btn').textContent='维护检查记录';
 document.querySelector('#page-complaints .heading p').textContent='系统管理员受理和分派；执法者仅在 H5 接收核实任务';
 names.identity='H5 用户与身份';
+</script><script>
+// V0.4 摊位审核、设置证发放、二维码生成与续审流程。
+names.publish='摊位信息审核';
+const publishNav=document.querySelector('.nav[data-page="publish"]');
+publishNav.innerHTML=publishNav.innerHTML.replace('公开资料审核','摊位信息审核').replace('>5<','>7<');
+const publishPage=document.querySelector('#page-publish');
+publishPage.querySelector('.heading h1').textContent='摊位信息审核';
+publishPage.querySelector('.heading p').textContent='统一处理首次入驻、信息更新和临时摊位设置证续审';
+publishPage.querySelector('.heading .badge').textContent='7条待审核';
+const publishNotice=document.createElement('div');
+publishNotice.className='notice';
+publishNotice.style.marginBottom='16px';
+publishNotice.innerHTML='<b>首次发布规则：</b>摊位信息审核通过并发放临时摊位设置证后，系统才生成对应二维码并发布 H5。后续更新必须重新审核，审核期间保留上一生效版本。';
+publishPage.querySelector('.filter').before(publishNotice);
+const typeSelect=publishPage.querySelector('.filter select');
+typeSelect.innerHTML='<option>全部审核类型</option><option>首次入驻</option><option>信息更新</option><option>设置证续审</option>';
+const publishTable=publishPage.querySelector('table');
+const qrHead=document.createElement('th');
+qrHead.textContent='二维码';
+publishTable.querySelector('thead tr').insertBefore(qrHead,publishTable.querySelector('thead tr').lastElementChild);
+publishTable.querySelectorAll('tbody tr').forEach(row=>{const td=document.createElement('td');td.innerHTML='<span class="badge">已生成</span>';row.insertBefore(td,row.lastElementChild)});
+publishTable.querySelector('tbody').insertAdjacentHTML('afterbegin',`<tr><td>SQ20260716001</td><td>07-16 10:25</td><td>陈记便民蔬菜摊</td><td>首次入驻</td><td>基础资料、照片、经营地址</td><td>陈晓</td><td>待发放设置证</td><td><span class="badge dark">待审核</span></td><td><span class="badge dark">未生成</span></td><td><button class="btn primary small" data-flow="first">审核并发证</button></td></tr><tr><td>XS20260716002</td><td>07-16 09:40</td><td>仇氏老鹅</td><td>设置证续审</td><td>有效期将于15天后到期</td><td>仇建国</td><td>设置证临期</td><td><span class="badge dark">待审核</span></td><td><span class="badge">已生成</span></td><td><button class="btn primary small" data-flow="renew">续审</button></td></tr>`);
+function openReviewFlow(type){
+  const first=type==='first';
+  document.querySelector('#drawer-title').textContent=first?'首次摊位审核与发证':'临时摊位设置证续审';
+  document.querySelector('#drawer-body').innerHTML=first?`<div class="notice">SQ20260716001 · 陈记便民蔬菜摊 · 二维码未生成</div><div class="stepper"><span class="step done"><i>1</i>摊主提交</span><span class="step"><i>2</i>信息审核</span><span class="step"><i>3</i>发放设置证</span><span class="step"><i>4</i>生成二维码</span></div><div class="form"><div class="field"><label>经营者</label><input class="input" value="陈晓" disabled></div><div class="field"><label>联系电话</label><input class="input" value="138****5621" disabled></div><div class="field full"><label>摊位信息</label><input class="input" value="蔬菜销售 · 平山乡便民市集A区021号" disabled></div><div class="field"><label>设置证证号 *</label><input class="input" placeholder="审核通过后填写"></div><div class="field"><label>有效期至 *</label><input class="input" value="2027-07-15"></div><div class="field full"><label>设置证图片 *</label><div class="upload">＋上传或生成临时摊位设置证</div></div><div class="field full"><label>审核意见</label><textarea></textarea></div></div>`:`<div class="notice">XS20260716002 · 仇氏老鹅 · 设置证15天后到期，H5已提醒摊主</div><div class="stepper"><span class="step done"><i>1</i>临期提醒</span><span class="step done"><i>2</i>摊主续审</span><span class="step"><i>3</i>管理员审核</span><span class="step"><i>4</i>更新证件</span></div><div class="form"><div class="field"><label>原有效期至</label><input class="input" value="2026-07-31" disabled></div><div class="field"><label>续审有效期至 *</label><input class="input" value="2027-07-31"></div><div class="field full"><label>摊主提交材料</label><div class="upload">经营信息确认表、现场照片（3张）</div></div><div class="field full"><label>审核意见</label><textarea></textarea></div></div>`;
+  document.querySelector('#save').textContent=first?'审核通过、发证并生成二维码':'续审通过并更新证件';
+  document.querySelector('#mask').classList.add('open');
+  document.querySelector('#save').onclick=()=>{closeDrawer();document.querySelector('#save').textContent='保存';toast(first?'已发放设置证并生成摊位二维码':'续审通过，H5证件有效期已更新')};
+}
+document.querySelectorAll('[data-flow]').forEach(button=>button.onclick=()=>openReviewFlow(button.dataset.flow));
+const dashKpis=document.querySelectorAll('#page-dashboard .kpi');
+dashKpis[1].querySelector('span').textContent='待摊位审核';
+dashKpis[1].querySelector('strong').textContent='7';
+dashKpis[1].querySelector('small').textContent='首次2·更新3·续审2';
+document.querySelector('#page-dashboard [data-go="publish"] strong').textContent='7条摊位信息待审核';
+document.querySelector('#page-dashboard [data-go="publish"] small').textContent='首次入驻、信息更新和设置证续审';
+forms.stall[1]=forms.stall[1].replace('完成基础档案、照片证照、地图位置后方可发布到 H5。','摊主首次提交基础资料、摊位照片和地图位置；审核通过并发放设置证后才生成二维码和发布 H5。');
+forms.edit[1]=forms.edit[1].replace('后台直接修改必须填写原因；摊主申请请到公开资料审核处理。','后台直接修改必须填写原因；摊主提交的任何公开信息更新都必须进入“摊位信息审核”，通过后才更新 H5。');
 </script></body></html>

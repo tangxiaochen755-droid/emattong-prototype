@@ -109,5 +109,13 @@
   $('#owner-edit').onclick=()=>$('#edit-sheet').classList.add('open');$('#rating-rule').onclick=()=>$('#rating-sheet').classList.add('open');$$('[data-license]').forEach(x=>x.onclick=()=>{$('#license-title').textContent=x.dataset.licenseTitle;$('#license-preview').src=x.dataset.license;$('#license-preview').alt=x.dataset.licenseTitle+'原型大图';$('#license-sheet').classList.add('open')});$$('[data-close]').forEach(x=>x.onclick=()=>$('#'+x.dataset.close).classList.remove('open'));$('#save-edit').onclick=()=>{$('#edit-sheet').classList.remove('open');toast('变更已提交，等待后台审核')};
   $$('.sheet-wrap').forEach(x=>x.addEventListener('click',e=>{if(e.target===x)x.classList.remove('open')}));
 </script>
+<script>
+// V0.7 临时摊位设置证临期续审提醒演示。
+work.owner=work.owner
+  .replace('data-toast="证照将于 2027-03-31 到期"','data-toast="临时摊位设置证将于 2026-07-31 到期，请尽快提交续审"')
+  .replace('<strong>证照提醒</strong><small>当前均在有效期</small>','<strong>设置证续审</strong><small>距到期15天 · 已提醒</small><b>1</b>');
+const permitDate=document.querySelector('[data-license-title="临时摊点设置证"] small');
+if(permitDate) permitDate.textContent='有效期至 2026-07-31 · 点击查看';
+</script>
 </body>
 </html>
